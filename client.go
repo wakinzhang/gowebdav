@@ -418,11 +418,6 @@ func (c *Client) Write(path string, data []byte, _ os.FileMode) (err error) {
 // WriteStream writes a stream
 func (c *Client) WriteStream(path string, stream io.Reader, _ os.FileMode) (err error) {
 
-	err = c.createParentCollection(path)
-	if err != nil {
-		return err
-	}
-
 	contentLength := int64(0)
 	if seeker, ok := stream.(io.Seeker); ok {
 		contentLength, err = seeker.Seek(0, io.SeekEnd)
